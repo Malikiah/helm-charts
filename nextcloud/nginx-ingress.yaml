@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: malikiah.io
+
+  - host: cloud.malikiah.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nextcloud-nginx
+          servicePort: 80
