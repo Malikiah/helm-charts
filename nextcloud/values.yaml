@@ -35,9 +35,10 @@ nextcloud:
     # runAsNonRoot: true
     # runAsUser: 1000
 
-  service:
-    type: ClusterIP
-    port: 80
+  # service:
+    # name: nextcloud
+    # type: ClusterIP
+    # port: 80
 
 
   ingress:
@@ -79,7 +80,7 @@ nextcloud-nginx:
   image:
     repository: malikiah1/nginx
     tag: latest
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
 
   imagePullSecrets: []
   nameOverride: ""
@@ -104,11 +105,12 @@ nextcloud-nginx:
     # runAsUser: 1000
 
   service:
+    name: nextcloud-nginx
     type: ClusterIP
     port: 80
     
   ingress:
-    enabled: true
+    enabled: false
     annotations: {}
       # kubernetes.io/ingress.class: nextcloud-nginx
       # kubernetes.io/tls-acme: "true"
@@ -146,7 +148,7 @@ nextcloud-mariadb:
   image:
     repository: malikiah1/mariadb
     tag: stable
-    pullPolicy: always
+    pullPolicy: Always
 
   imagePullSecrets: []
   nameOverride: ""
@@ -171,11 +173,12 @@ nextcloud-mariadb:
     # runAsUser: 1000
 
   service:
+    name: nextcloud-mariadb
     type: ClusterIP
     port: 3306
 
   ingress:
-    enabled: true
+    enabled: false
     annotations: {}
       # kubernetes.io/ingress.class: nextcloud-mariadb
       # kubernetes.io/tls-acme: "true"
@@ -213,7 +216,7 @@ nextcloud-php-fpm:
   image:
     repository: malikiah1/php7.2-fpm
     tag: latest
-    pullPolicy: always
+    pullPolicy: Always
 
   imagePullSecrets: []
   nameOverride: ""
@@ -238,11 +241,12 @@ nextcloud-php-fpm:
     # runAsUser: 1000
 
   service:
+    name: nextcloud-php-fpm
     type: ClusterIP
     port: 9000
 
   ingress:
-    enabled: true
+    enabled: false
     annotations: {}
       # kubernetes.io/ingress.class: nextcloud-php-fpm
       # kubernetes.io/tls-acme: "true"
