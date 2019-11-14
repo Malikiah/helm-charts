@@ -110,7 +110,7 @@ nextcloud-nginx:
   ingress:
     enabled: true
     annotations: {}
-      kubernetes.io/ingress.class: nextcloud-nginx
+      # kubernetes.io/ingress.class: nextcloud-nginx
       # kubernetes.io/tls-acme: "true"
     hosts:
       - host: chart-example.local
@@ -177,7 +177,7 @@ nextcloud-mariadb:
   ingress:
     enabled: true
     annotations: {}
-      kubernetes.io/ingress.class: nextcloud-mariadb
+      # kubernetes.io/ingress.class: nextcloud-mariadb
       # kubernetes.io/tls-acme: "true"
     hosts:
       - host: chart-example.local
@@ -244,7 +244,7 @@ nextcloud-php-fpm:
   ingress:
     enabled: true
     annotations: {}
-      kubernetes.io/ingress.class: nextcloud-php-fpm
+      # kubernetes.io/ingress.class: nextcloud-php-fpm
       # kubernetes.io/tls-acme: "true"
     hosts:
       - host: chart-example.local
