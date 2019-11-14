@@ -45,9 +45,8 @@ ingress:
   hosts:
     - host: cloud.malikiah.io
       paths: [/]
-        backend:
-          serviceName: nextcloud-nginx
-          servicePort: 80
+        serviceName: nextcloud-nginx
+        servicePort: 80
 
   tls: []
   #  - secretName: chart-example-tls
