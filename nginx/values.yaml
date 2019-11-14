@@ -40,9 +40,12 @@ service:
 ingress:
   enabled: enable
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
+    - host: malikiah.io
+      paths: [/]
+      
     - host: cloud.malikiah.io
       paths: [/]
       serviceName: nextcloud-nginx
