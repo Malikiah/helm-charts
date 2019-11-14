@@ -7,7 +7,7 @@
 # Declare variables to be passed into your templates.
 nextcloud:
   replicaCount: 1
-
+  name: nextcloud
   image:
     repository: nextcloud
     tag: stable
@@ -76,7 +76,7 @@ nextcloud:
 
 nextcloud-nginx:
   replicaCount: 1
-
+  name: nextcloud-nginx
   image:
     repository: malikiah1/nginx
     tag: latest
@@ -144,7 +144,7 @@ nextcloud-nginx:
 
 nextcloud-mariadb:
   replicaCount: 1
-
+  name: nextcloud-mariadb
   image:
     repository: malikiah1/mariadb
     tag: stable
@@ -212,7 +212,7 @@ nextcloud-mariadb:
 
 nextcloud-php-fpm:
   replicaCount: 1
-
+  name: nextcloud-php-fpm
   image:
     repository: malikiah1/php7.2-fpm
     tag: latest
