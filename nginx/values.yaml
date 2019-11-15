@@ -33,10 +33,10 @@ securityContext: {}
 
 service:
   type: NodePort
-  port: 80
-  targetPort: 80
-  nodePort: 30080
-  
+  Port: 80
+  TargetPort: 80
+  NodePort: 30080
+
 ingress:
   enabled: enable
   annotations: {}
