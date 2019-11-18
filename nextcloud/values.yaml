@@ -79,7 +79,7 @@ nextcloud-nginx:
   name: nextcloud-nginx
   image:
     repository: nginx
-    tag: stable
+    tag: latest
     pullPolicy: Always
 
   imagePullSecrets: []
@@ -149,7 +149,7 @@ nextcloud-mariadb:
   name: nextcloud-mariadb
   image:
     repository: mariadb
-    tag: stable
+    tag: latest
     pullPolicy: Always
 
   imagePullSecrets: []
@@ -216,8 +216,8 @@ nextcloud-php-fpm:
   replicaCount: 1
   name: nextcloud-php-fpm
   image:
-    repository: malikiah1/php7.2-fpm
-    tag: latest
+    repository: php
+    tag: rc-fpm-alpine
     pullPolicy: Always
 
   imagePullSecrets: []
