@@ -78,13 +78,15 @@ nextcloud-nginx:
   replicaCount: 1
   name: nextcloud-nginx
   image:
-    repository: malikiah1/nginx
-    tag: latest
+    repository: nginx
+    tag: stable
     pullPolicy: Always
 
   imagePullSecrets: []
   nameOverride: ""
   fullnameOverride: ""
+
+  arguments: [ "dnf","-y","install", "git" ]
 
   serviceAccount:
     # Specifies whether a service account should be created
@@ -146,7 +148,7 @@ nextcloud-mariadb:
   replicaCount: 1
   name: nextcloud-mariadb
   image:
-    repository: malikiah1/mariadb
+    repository: mariadb
     tag: stable
     pullPolicy: Always
 
