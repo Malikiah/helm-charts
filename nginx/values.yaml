@@ -33,9 +33,9 @@ securityContext: {}
 
 service:
   type: NodePort
-  Port: 80
-  TargetPort: 80
-  NodePort: 30080
+  port: 80
+  targetPort: 80
+  nodePort: 30080
 
 ingress:
   enabled: enable
