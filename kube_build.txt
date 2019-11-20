@@ -1,0 +1,10 @@
+﻿
+
+sudo dnf -y update && sudo dnf -y install kubectl kubeadm kubelet vim && sudo systemctl enable kubelet && sudo systemctl start kubelet && sudo dnf -y install dnf-plugins-core && sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo && sudo dnf -y install docker-ce docker-ce-cli containerd.io && sudo systemctl enable docker && sudo systemctl start docker
+
+sudo sysctl net.bridge.bridge-nf-call-iptables=1
+
+sysctl -w net.ipv4.conf.all.rp_filter=1
+
+
+ipvsadm-1.29-10.fc30.x86_64
