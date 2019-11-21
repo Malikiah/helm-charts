@@ -30,11 +30,11 @@ spec:
       - name: {{ .name }}
           {{- if .configMap }}
           configMap:
-              name: {{ .configMap.name }}
+              name: {{ .configMap }}
           {{- end }}
           {{- if .pvc}}
           persistentVolumeClaim:
-            claimName: {{ .pvc.claimName }}
+            claimName: {{ .pvc }}
           {{- end }}
       {{- end }}
       #Volumes End

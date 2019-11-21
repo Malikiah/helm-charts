@@ -16,8 +16,7 @@ fullnameOverride: ""
 #Volumes Start
 volumes:
   name: server-proxy-config
-    configMap:
-      name: server-proxy-configmap
+  configMap: server-proxy-configmap
 
 volumeMounts:
   name: server-proxy-config
