@@ -24,7 +24,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
-      #Volumes config map
+      #Volumes Start
       volumes: 
       {{- range .Values.volumes }}
       - name: {{ .name }}
@@ -37,7 +37,8 @@ spec:
             claimName: {{ .pvc.claimName }}
           {{- end }}
       {{- end }}
-        
+      #Volumes End
+
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -57,13 +58,13 @@ spec:
           #     path: /
           #     port: http
 
-          #Volume Mount Range
-          
+          #Volume Mount Start
           volumeMounts:
           {{- range .Values.volumeMounts }}
             - name: {{ .name }}
               mountPath: {{ .mountPath }}
           {{- end }}
+          #Volume Mount End
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

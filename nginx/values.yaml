@@ -13,6 +13,17 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+#Volumes Start
+volumes:
+  name: server-proxy-config
+    configMap:
+      name: server-proxy-configmap
+
+volumeMounts:
+  name: server-proxy-config
+  mountPath: /etc/nginx/conf.d
+#Volumes End
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
