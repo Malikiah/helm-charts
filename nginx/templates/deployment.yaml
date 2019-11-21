@@ -66,8 +66,9 @@ spec:
           #     port: http
 
           #Volume Mount Range
-          {{- range.Values.volumeMounts }}
+          
           volumeMounts:
+          {{- range .Values.volumeMounts }}
             - name: {{ .name }}
               mountPath: {{ .mountPath }}
           {{- end }}
