@@ -25,25 +25,18 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
       #Volumes config map
-      volumes: 
-      {{- range .Values.volumes }}
-      - name: {{ .name }}
-          {{- if .configMap }}
-          configMap:
-              name: {{ .configMap.name }}
-          {{- end }}
-          {{- if .pvc}}
-          persistentVolumeClaim:
-            claimName: {{ .pvc.claimName }}
-          {{- end }}
-      {{- end }}
-      
-      
-      {{- if .Values.volumes.pvc}}
-      - name: {{ range .Values.volumes.name }}
-          persistentVolumeClaim:
-            claimName: {{ range .Values.pvc }}
-      {{- end }}
+      # volumes: 
+      # {{- range .Values.volumes }}
+      # - name: {{ .name }}
+      #     {{- if .configMap }}
+      #     configMap:
+      #         name: {{ .configMap.name }}
+      #     {{- end }}
+      #     {{- if .pvc}}
+      #     persistentVolumeClaim:
+      #       claimName: {{ .pvc.claimName }}
+      #     {{- end }}
+      # {{- end }}
         
       containers:
         - name: {{ .Chart.Name }}
@@ -66,11 +59,11 @@ spec:
 
           #Volume Mount Range
           
-          volumeMounts:
-          {{- range .Values.volumeMounts }}
-            - name: {{ .name }}
-              mountPath: {{ .mountPath }}
-          {{- end }}
+          # volumeMounts:
+          # {{- range .Values.volumeMounts }}
+          #   - name: {{ .name }}
+          #     mountPath: {{ .mountPath }}
+          # {{- end }}
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
