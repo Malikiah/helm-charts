@@ -59,11 +59,11 @@ spec:
 
           #Volume Mount Range
           
-          # volumeMounts:
-          # {{- range .Values.volumeMounts }}
-          #   - name: {{ .name }}
-          #     mountPath: {{ .mountPath }}
-          # {{- end }}
+          volumeMounts:
+          {{- range .Values.volumeMounts }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+          {{- end }}
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
