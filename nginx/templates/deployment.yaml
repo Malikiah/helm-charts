@@ -26,7 +26,6 @@ spec:
 
       #Volumes config map
       volumes: 
-      
       {{- range .Values.volumes }}
       - name: {{ .name }}
           {{- if .configMap }}
