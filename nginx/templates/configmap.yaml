@@ -1,0 +1,15 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cloud.malikiah.io-configmap
+
+data:
+  server-proxy.conf : |
+    server {
+      listen 80;
+      server_name malikiah.io cloud.malikiah.io ;
+      
+      location / {
+        proxy_pass 1.1.1.1;
+      }
+    }

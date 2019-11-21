@@ -23,6 +23,29 @@ spec:
       serviceAccountName: {{ template "nginx.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+
+      #Volumes config map
+      volumes: 
+      
+      {{- range .Values.volume }}
+      - name: {{ .name }}
+          {{- if configMap}}
+          configMap:
+              name: {{ .configMap.name }}
+          {{- end }}
+          {{- if .Values.volumes.pvc}}
+          persistentVolumeClaim:
+            claimName: {{ .pvc.claimName }}
+          {{- end }}
+      {{- end }}
+      
+      
+      {{- if .Values.volumes.pvc}}
+      - name: {{ range .Values.volumes.name }}
+          persistentVolumeClaim:
+            claimName: {{ range .Values.pvc }}
+      {{- end }}
+        
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -41,6 +64,14 @@ spec:
           #   httpGet:
           #     path: /
           #     port: http
+
+          #Volume Mount Range
+          {{- range.Values.volumeMounts }}
+          volumeMounts:
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+          {{- end }}
+
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
