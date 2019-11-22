@@ -10,6 +10,6 @@ data:
       server_name malikiah.io cloud.malikiah.io ;
       
       location / {
-        
+        proxy_pass http://proxy-ingress/;
       }
     }
