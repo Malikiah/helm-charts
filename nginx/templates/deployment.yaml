@@ -38,10 +38,11 @@ spec:
       #       {{- end }}
       # {{- end }}
       #Volumes End
+
       volumes:
         - name: proxy-config
-            configMap:
-              name: proxy-configmap
+          configMap:
+            name: proxy-configmap
 
       containers:
         - name: {{ .Chart.Name }}
