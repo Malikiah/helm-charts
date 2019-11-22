@@ -54,14 +54,14 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: malikiah.io
-      paths: [/]
-      serviceName: malikiah.io
-      servicePort: 80
+      - paths: [/]
+          serviceName: malikiah.io
+          servicePort: 80
 
     - host: cloud.malikiah.io
-      paths: [/]
-      serviceName: nextcloud-nginx
-      servicePort: 80
+      - paths: [/]
+          serviceName: nextcloud-nginx
+          servicePort: 80
       
 
   tls: []
