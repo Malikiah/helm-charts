@@ -27,15 +27,15 @@ spec:
       #Volumes Start
       volumes: 
       {{- range .Values.volumes }}
-      - name: {{- toYaml .name }}
-          {{- if .configMap }}
-          configMap:
-              name: {{ .configMap }}
-          {{- end }}
-          {{- if .pvc}}
-          persistentVolumeClaim:
-            claimName: {{ .pvc }}
-          {{- end }}
+        - name: {{- toYaml .name }}
+            {{- if .configMap }}
+            configMap:
+                name: {{ .configMap }}
+            {{- end }}
+            {{- if .pvc}}
+            persistentVolumeClaim:
+              claimName: {{ .pvc }}
+            {{- end }}
       {{- end }}
       #Volumes End
 
