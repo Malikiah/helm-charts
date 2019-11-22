@@ -28,14 +28,14 @@ spec:
       volumes: 
       {{- range .Values.volumes }}
         - name: {{ .name }}
-            {{- if .configMap }}
-            configMap:
-                name: {{ .configMap }}
-            {{- end }}
-            {{- if .pvc}}
-            persistentVolumeClaim:
-              claimName: {{ .pvc }}
-            {{- end }}
+          {{- if .configMap }}
+          configMap:
+              name: {{ .configMap }}
+          {{- end }}
+          {{- if .pvc}}
+          persistentVolumeClaim:
+            claimName: {{ .pvc }}
+          {{- end }}
       {{- end }}
       #Volumes End
 
