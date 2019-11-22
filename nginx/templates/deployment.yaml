@@ -27,7 +27,7 @@ spec:
       #Volumes Start
       volumes: 
       {{- range .Values.volumes }}
-      - name: {{ .name }}
+      - name: {{- toYaml .name }}
           {{- if .configMap }}
           configMap:
               name: {{ .configMap }}
