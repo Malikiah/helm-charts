@@ -25,24 +25,24 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
       #Volumes Start
-      # volumes: 
-      # {{- range .Values.volumes }}
-      #   - name: {{ .name }}
-      #       {{- if .configMap }}
-      #       configMap:
-      #           name: {{ .configMap }}
-      #       {{- end }}
-      #       {{- if .pvc}}
-      #       persistentVolumeClaim:
-      #         claimName: {{ .pvc }}
-      #       {{- end }}
-      # {{- end }}
+      volumes: 
+      {{- range .Values.volumes }}
+        - name: {{ .name }}
+            {{- if .configMap }}
+            configMap:
+                name: {{ .configMap }}
+            {{- end }}
+            {{- if .pvc}}
+            persistentVolumeClaim:
+              claimName: {{ .pvc }}
+            {{- end }}
+      {{- end }}
       #Volumes End
 
-      volumes:
-        - name: proxy-config
-          configMap:
-            name: proxy-configmap
+      # volumes:
+      #   - name: proxy-config
+      #     configMap:
+      #       name: proxy-configmap
 
       containers:
         - name: {{ .Chart.Name }}
