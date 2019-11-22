@@ -54,7 +54,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: malikiah.io
-    - paths: [/]
+      - paths: [/]
         serviceName: malikiah.io
         servicePort: 80
 
