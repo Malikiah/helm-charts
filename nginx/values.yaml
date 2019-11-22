@@ -15,12 +15,12 @@ fullnameOverride: ""
 
 #Volumes Start
 volumes:
-- name: server-proxy-config
-  configMap: server-proxy-configmap
+  - name: server-proxy-config
+    configMap: server-proxy-configmap
 
 volumeMounts:
-- name: server-proxy-config
-  mountPath: /etc/nginx/conf.d
+  - name: server-proxy-config
+    mountPath: /etc/nginx/conf.d
 #Volumes End
 
 serviceAccount:
