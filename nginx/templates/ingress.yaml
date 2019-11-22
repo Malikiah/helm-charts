@@ -34,8 +34,8 @@ spec:
         {{- range .paths }}
           - path: {{ . }}
             backend:
-              serviceName: {{ .serviceName }}
-              servicePort: {{ $svcPort }}
+              serviceName: {{ .Values.ingress.hosts.serviceName }}
+              servicePort: {{ .Values.ingress.hosts.servicePort }}
         {{- end }}
   {{- end }}
 {{- end }}
