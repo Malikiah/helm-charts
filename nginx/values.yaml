@@ -52,17 +52,18 @@ ingress:
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-  # - hosts:
+  - hosts:
+      host: malikiah.io
+        - paths:
+            path: [/]
+              serviceName: malikiah.io
+              servicePort: 80
 
-  - host: malikiah.io
-      path: [/]
-        serviceName: malikiah.io
-        servicePort: 80
-
-  - host: cloud.malikiah.io
-      path: [/]
-        serviceName: nextcloud-nginx
-        servicePort: 80
+      host: cloud.malikiah.io
+      - paths:
+          path: [/]
+            serviceName: nextcloud-nginx
+            servicePort: 80
       
 
   tls: []
