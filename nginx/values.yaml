@@ -2,50 +2,50 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
-name: nginx
-image:
-  repository: malikiah1/nginx
-  tag: latest
-  pullPolicy: Always
+# replicaCount: 1
+# name: nginx
+# image:
+#   repository: malikiah1/nginx
+#   tag: latest
+#   pullPolicy: Always
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+# imagePullSecrets: []
+# nameOverride: ""
+# fullnameOverride: ""
 
-#Volumes Start
-volumes:
-  - name: proxy-config
-    configMap: proxy-configmap
+# #Volumes Start
+# volumes:
+#   - name: proxy-config
+#     configMap: proxy-configmap
 
-volumeMounts:
-  - name: proxy-config
-    mountPath: /etc/nginx/conf.d
-#Volumes End
+# volumeMounts:
+#   - name: proxy-config
+#     mountPath: /etc/nginx/conf.d
+# #Volumes End
 
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name:
+# serviceAccount:
+#   # Specifies whether a service account should be created
+#   create: true
+#   # The name of the service account to use.
+#   # If not set and create is true, a name is generated using the fullname template
+#   name:
 
-podSecurityContext: {}
-  # fsGroup: 2000
+# podSecurityContext: {}
+#   # fsGroup: 2000
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+# securityContext: {}
+#   # capabilities:
+#   #   drop:
+#   #   - ALL
+#   # readOnlyRootFilesystem: true
+#   # runAsNonRoot: true
+#   # runAsUser: 1000
 
-service:
-  type: NodePort
-  port: 80
-  targetPort: 80
-  nodePort: 30080
+# service:
+#   type: NodePort
+#   port: 80
+#   targetPort: 80
+#   nodePort: 30080
 
 ingress:
   enabled: true
