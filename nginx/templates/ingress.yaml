@@ -36,6 +36,6 @@ spec:
             backend:
               serviceName: {{ .serviceName }}
               servicePort: {{ .servicePort }}
-    
+        {{- end }}
   {{- end }}
 {{- end }}
