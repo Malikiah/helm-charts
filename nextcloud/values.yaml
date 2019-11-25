@@ -88,6 +88,16 @@ nextcloud-nginx:
   nameOverride: ""
   fullnameOverride: ""
 
+  #Volumes Start
+  volumes:
+    - name: cloud.malikiah.io-config
+      configMap: cloud.malikiah.io-configmap
+
+  volumeMounts:
+    - name: cloud.malikiah.io-config
+      mountPath: /etc/nginx/conf.d
+  #Volumes End
+
   arguments: [ "dnf","-y","install", "git" ]
 
   serviceAccount:
