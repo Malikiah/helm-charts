@@ -41,11 +41,11 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: NodePort
-  port: 80
-  targetPort: 80
-  nodePort: 30080
+# service:
+#   type: NodePort
+#   port: 80
+#   targetPort: 80
+#   nodePort: 30080
 
 ingress:
   enabled: true
