@@ -56,13 +56,13 @@ ingress:
   rules:
     - host: malikiah.io
       paths:
-        - path: [/]
+      - path: [/]
           serviceName: malikiah.io
           servicePort: 80
 
     - host: cloud.malikiah.io
       paths:
-        - path: [/]
+      - path: [/]
           serviceName: nextcloud-nginx
           servicePort: 80
       

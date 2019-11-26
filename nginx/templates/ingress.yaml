@@ -34,8 +34,8 @@ spec:
         {{- range .paths }}
           - path: {{ .path }}
             backend:
-              serviceName: {{ .serviceName }}
-              servicePort: {{ .servicePort }}
+              serviceName: {{ .path.serviceName }}
+              servicePort: {{ .path.servicePort }}
         {{- end }}
   {{- end }}
 {{- end }}
