@@ -131,7 +131,8 @@ nextcloud-nginx:
     }
     hosts:
       - host: cloud.malikiah.io
-        paths: []
+        paths: [/]
+        
 
     tls: []
     #  - secretName: chart-example-tls
