@@ -86,7 +86,7 @@ nextcloud-nginx:
 
   imagePullSecrets: []
   nameOverride: ""
-  fullnameOverride: ""
+  fullnameOverride: "nextcloud-nginx"
 
   #Volumes Start
   volumes:
