@@ -125,9 +125,10 @@ nextcloud-nginx:
     
   ingress:
     enabled: true
-    annotations: {}
+    annotations: {
       kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
+    }
     hosts:
       - host: cloud.malikiah.io
         paths: []
