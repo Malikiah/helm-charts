@@ -58,7 +58,7 @@ ingress:
     - host: malikiah.io
       paths:
         - path: /
-          serviceName: malikiah.io
+          serviceName: placeholder
           servicePort: 80
 
     - host: cloud.malikiah.io
