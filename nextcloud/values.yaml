@@ -90,11 +90,11 @@ nextcloud-nginx:
 
   #Volumes Start
   volumes:
-    - name: cloud.malikiah.io-config
-      configMap: cloud.malikiah.io-configmap
+    - name: cloud-config
+      configMap: cloud-configmap
 
   volumeMounts:
-    - name: cloud.malikiah.io-config
+    - name: cloud-config
       mountPath: /etc/nginx/conf.d
   #Volumes End
 
