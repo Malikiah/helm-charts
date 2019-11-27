@@ -125,8 +125,8 @@ nextcloud-nginx:
     
   ingress:
     enabled: true
-    annotations: {
-      kubernetes.io/ingress.class: nginx }
+    annotations: {}
+      kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
 
     hosts:
@@ -277,8 +277,8 @@ nextcloud-php-fpm:
 
   ingress:
     enabled: true
-    annotations: {
-      kubernetes.io/ingress.class: nginx }
+    annotations: {}
+      kubernetes.io/ingress.class: nginx 
       # kubernetes.io/tls-acme: "true"
     hosts:
       - host: nextcloud-php-fpm
