@@ -66,6 +66,10 @@ spec:
           {{- end }}
           #Volume Mount End
           
+          #Args Start
+          command: ["chown"]
+          args: ["-R", "nginx:nginx", "/var/www/html"]
+          #Args End
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
