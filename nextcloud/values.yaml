@@ -79,7 +79,7 @@ nextcloud-nginx:
   name: nextcloud-nginx
   image:
     repository: nginx
-    tag: latest
+    tag: alpine
     pullPolicy: Always
 
   containerPort: 80
