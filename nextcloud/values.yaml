@@ -89,13 +89,13 @@ nextcloud-nginx:
   fullnameOverride: "nextcloud-nginx"
 
   #Volumes Start
-  # volumes:
-  #   - name: nextcloud-nginx-config
-  #     configMap: nextcloud-nginx-configmap
+  volumes:
+    - name: nextcloud-nginx-config
+      configMap: nextcloud-nginx-configmap
 
-  # volumeMounts:
-  #   - name: nextcloud-nginx-config
-  #     mountPath: /etc/nginx/conf.d
+  volumeMounts:
+    - name: nextcloud-nginx-config
+      mountPath: /etc/nginx/conf.d
   #Volumes End
 
   arguments: [ "dnf","-y","install", "git" ]

@@ -5,17 +5,13 @@ metadata:
 
 data:
   cloud.malikiah.io.conf : |
-    resolver kube-dns.kube-system.svc.cluster.local valid=5s;
-    
     upstream php-handler {
-      
       server nextcloud-php-fpm.default.svc.cluster.local:9000;
       #server 127.0.0.1:9000;
       #server unix:/var/run/php/php7.2-fpm.sock;
     }
     
     server {
-    resolver kube-dns.kube-system.svc.cluster.local valid=5s;
     listen 80;
     server_name cloud.malikiah.io www.cloud.malikiah.io;
 
