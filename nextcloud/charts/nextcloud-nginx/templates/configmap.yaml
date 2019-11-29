@@ -6,7 +6,7 @@ metadata:
 data:
   cloud.malikiah.io.conf : |
     upstream php-handler {
-      server nextcloud-php-fpm.default:9000;
+      server nextcloud-php-fpm.default.svc.cluster.local:9000;
       #server 127.0.0.1:9000;
       #server unix:/var/run/php/php7.2-fpm.sock;
     }
@@ -92,7 +92,7 @@ data:
         #Avoid sending the security headers twice
         fastcgi_param modHeadersAvailable true;
         fastcgi_param front_controller_active true;
-        fastcgi_pass nextcloud-php-fpm:9000;
+        fastcgi_pass nextcloud-php-fpm.default.svc.cluster.local:9000;
         #fastcgi_pass 127.0.0.1:9000;
         #fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
         fastcgi_intercept_errors on;
