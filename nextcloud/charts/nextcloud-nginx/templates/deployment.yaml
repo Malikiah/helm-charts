@@ -67,10 +67,10 @@ spec:
           #Volume Mount End
           
           #Args Start
-          command: ["mkdir"]
-          args: ["/usr/share/nginx/html/cloud.malikiah.io"]
-          command: ["chown"]
-          args: ["-R", "nginx:nginx", "/usr/share/nginx/html"]
+          # command: ["mkdir"]
+          # args: ["/usr/share/nginx/html/cloud.malikiah.io"]
+          # command: ["chown"]
+          # args: ["-R", "nginx:nginx", "/usr/share/nginx/html"]
           #Args End
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
