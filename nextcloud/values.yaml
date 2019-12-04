@@ -24,7 +24,7 @@ nextcloud:
 
   volumeMounts:
     - name: nextcloud-persistent-volume
-      mountPath: /usr/share/nginx/html/cloud.malikiah.io
+      mountPath: /var/www/html
   #Volumes End
 
   serviceAccount:
