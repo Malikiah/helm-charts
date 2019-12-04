@@ -103,7 +103,7 @@ nextcloud-nginx:
     - name: nextcloud-nginx-config
       configMap: nextcloud-nginx-configmap
     - name: nextcloud-persistent-volume
-      claimeName: nextcloud-pvc
+      claimName: nextcloud-pvc
 
   volumeMounts:
     - name: nextcloud-nginx-config

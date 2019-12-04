@@ -32,9 +32,9 @@ spec:
           configMap:
               name: {{ .configMap }}
           {{- end }}
-          {{- if .pvc}}
+          {{- if .claimName }}
           persistentVolumeClaim:
-            claimName: {{ .pvc }}
+            claimName: {{ .claimName }}
           {{- end }}
       {{- end }}
       #Volumes End
