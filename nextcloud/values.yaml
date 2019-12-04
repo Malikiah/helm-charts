@@ -17,6 +17,16 @@ nextcloud:
   nameOverride: ""
   fullnameOverride: ""
 
+  #Volumes Start
+  volumes:
+    - name: nextcloud-persistent-volume
+      claimeName: nextcloud-pvc
+
+  volumeMounts:
+    - name: nextcloud-persistent-volume
+      mountPath: /usr/share/nginx/html/cloud.malikiah.io
+  #Volumes End
+
   serviceAccount:
     # Specifies whether a service account should be created
     create: true
@@ -92,10 +102,14 @@ nextcloud-nginx:
   volumes:
     - name: nextcloud-nginx-config
       configMap: nextcloud-nginx-configmap
+    - name: nextcloud-persistent-volume
+      claimeName: nextcloud-pvc
 
   volumeMounts:
     - name: nextcloud-nginx-config
       mountPath: /etc/nginx/conf.d
+    - name: nextcloud-persistent-volume
+      mountPath: /usr/share/nginx/html/cloud.malikiah.io
   #Volumes End
 
   arguments: [ "dnf","-y","install", "git" ]

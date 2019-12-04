@@ -67,8 +67,8 @@ spec:
           #Volume Mount End
           
           #Args Start
-          #command: ["chown"]
-          #args: ["-R", "nginx:nginx", "/var/www/html"]
+          command: ["chown"]
+          args: ["-R", "nginx:nginx", "/usr/share/nginx/html"]
           #Args End
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
