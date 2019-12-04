@@ -263,7 +263,7 @@ nextcloud-php-fpm:
 
   volumeMounts:
     - name: nextcloud-php-fpm-config
-      mountPath: /usr/local/etc/php-fpm.d/
+      mountPath: /usr/local/etc/php-fpm.d
   #Volumes End
 
   serviceAccount:
