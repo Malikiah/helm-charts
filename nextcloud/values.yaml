@@ -89,7 +89,7 @@ nextcloud-nginx:
   name: nextcloud-nginx
   image:
     repository: malikiah1/nginx
-    tag: alpine
+    tag: fedora
     pullPolicy: Always
 
   containerPort: 80
@@ -111,8 +111,6 @@ nextcloud-nginx:
     - name: nextcloud-persistent-volume
       mountPath: /usr/share/nginx/html/cloud.malikiah.io
   #Volumes End
-
-  arguments: [ "dnf","-y","install", "git" ]
 
   serviceAccount:
     # Specifies whether a service account should be created
@@ -247,7 +245,7 @@ nextcloud-php-fpm:
   name: nextcloud-php-fpm
   image:
     repository: malikiah1/php-fpm
-    tag: rc-fpm-alpine
+    tag: fedora
     pullPolicy: Always
 
   containerPort: 9000
@@ -263,7 +261,7 @@ nextcloud-php-fpm:
 
   volumeMounts:
     - name: nextcloud-php-fpm-config
-      mountPath: /usr/local/etc/php-fpm.d
+      mountPath: /etc/php-fpm.d
   #Volumes End
 
   serviceAccount:
