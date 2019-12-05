@@ -66,11 +66,6 @@ spec:
           {{- end }}
           #Volume Mount End
 
-          #Args Start
-          command: ["php-fpm -F"]
-          args: ["adduser -s /bin/false nginx"]
-          #Args End
-
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
