@@ -68,6 +68,37 @@ spec:
           
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+
+#### START PHP FPM SIDECAR ####
+        - name: {{ .Values.phpfpm.name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.phpfpm.image.repository }}:{{ .Values.phpfpm.image.tag }}"
+          imagePullPolicy: {{ .Values.phpfpm.image.pullPolicy }}
+          ports:
+            - name: php-fpm
+              containerPort: {{ .Values.phpfpm.containerPort }}
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+
+          #Volume Mount Start
+          volumeMounts:
+          {{- range .Values.phpfpm.volumeMounts }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+          {{- end }}
+          #Volume Mount End
+          
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+#### END PHP FPM SIDECAR ####
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -83,7 +83,6 @@ nextcloud:
 
   affinity: {}
 
-
 nextcloud-nginx:
   replicaCount: 1
   name: nextcloud-nginx
@@ -93,6 +92,24 @@ nextcloud-nginx:
     pullPolicy: Always
 
   containerPort: 80
+## Side Car PHP-FPM
+  phpfpm:
+    replicaCount: 1
+    name: nextcloud-php-fpm
+    image:
+      repository: malikiah1/php-fpm
+      tag: fedora
+      pullPolicy: Always
+
+    containerPort: 9000
+
+    volumeMounts:
+      - name: nextcloud-php-fpm-config
+        #mountPath: /usr/local/etc/php-fpm.d
+        mountPath: /etc/php-fpm.d
+      - name: nextcloud-persistent-volume
+        mountPath: /usr/share/nginx/html/cloud.malikiah.io
+    #Volumes End
 
   imagePullSecrets: []
   nameOverride: ""
@@ -100,6 +117,8 @@ nextcloud-nginx:
 
   #Volumes Start
   volumes:
+    - name: nextcloud-php-fpm-config
+      configMap: nextcloud-php-fpm-configmap
     - name: nextcloud-nginx-config
       configMap: nextcloud-nginx-configmap
     - name: nextcloud-persistent-volume
@@ -217,87 +236,6 @@ nextcloud-mariadb:
     hosts:
       - host: chart-example.local
         paths: []
-
-    tls: []
-    #  - secretName: chart-example-tls
-    #    hosts:
-    #      - chart-example.local
-
-  resources: {}
-    # We usually recommend not to specify default resources and to leave this as a conscious
-    # choice for the user. This also increases chances charts run on environments with little
-    # resources, such as Minikube. If you do want to specify resources, uncomment the following
-    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
-
-  nodeSelector: {}
-
-  tolerations: []
-
-  affinity: {}
-
-
-nextcloud-php-fpm:
-  replicaCount: 1
-  name: nextcloud-php-fpm
-  image:
-    repository: malikiah1/php-fpm
-    tag: fedora
-    pullPolicy: Always
-
-  containerPort: 9000
-
-  imagePullSecrets: []
-  nameOverride: ""
-  fullnameOverride: "nextcloud-php-fpm"
-
-  #Volumes Start
-  volumes:
-    - name: nextcloud-php-fpm-config
-      configMap: nextcloud-php-fpm-configmap
-
-  volumeMounts:
-    - name: nextcloud-php-fpm-config
-      mountPath: /etc/php-fpm.d
-  #Volumes End
-
-  serviceAccount:
-    # Specifies whether a service account should be created
-    create: true
-    # The name of the service account to use.
-    # If not set and create is true, a name is generated using the fullname template
-    name:
-
-  podSecurityContext: {}
-    # fsGroup: 2000
-
-  securityContext: {}
-    # capabilities:
-    #   drop:
-    #   - ALL
-    # readOnlyRootFilesystem: true
-    # runAsNonRoot: true
-    # runAsUser: 1000
-
-  service:
-    name: nextcloud-php-fpm
-    type: ClusterIP
-    port: 9000
-
-  ingress:
-    enabled: false
-    annotations: 
-      kubernetes.io/ingress.class: nginx 
-      # kubernetes.io/tls-acme: "true"
-    hosts:
-      - host: nextcloud-php-fpm
-        paths: [/]
-        
 
     tls: []
     #  - secretName: chart-example-tls
