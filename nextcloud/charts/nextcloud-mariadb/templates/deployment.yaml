@@ -23,6 +23,22 @@ spec:
       serviceAccountName: {{ template "nextcloud-mariadb.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+
+      #Volumes Start
+      volumes: 
+      {{- range .Values.volumes }}
+        - name: {{ .name }}
+          {{- if .configMap }}
+          configMap:
+              name: {{ .configMap }}
+          {{- end }}
+          {{- if .claimName }}
+          persistentVolumeClaim:
+            claimName: {{ .claimName }}
+          {{- end }}
+      {{- end }}
+      #Volumes End
+
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -31,7 +47,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: MYSQL_ROOT_PASSWORD
-            value: "test"
+            valueFrom:
+                secretKeyRef:
+                  key: root_password
+                  name: mariadb-secrets
           # ports:
           #   - name: http
           #     containerPort: {{ .Values.containerPort }}
@@ -44,6 +63,15 @@ spec:
           #   httpGet:
           #     path: /
           #     port: http
+
+          #Volume Mount Start
+          volumeMounts:
+          {{- range .Values.volumeMounts }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+          {{- end }}
+          #Volume Mount End
+
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

@@ -205,6 +205,20 @@ nextcloud-mariadb:
   nameOverride: ""
   fullnameOverride: "nextcloud-mariadb"
 
+   #Volumes Start
+  volumes:
+    - name: nextcloud-mariadb-persistent-volume
+      claimName: nextcloud-mariadb-pvc
+    - name: nextcloud-mariadb-config-persistent-volume
+      claimName: nextcloud-mariadb-config-pvc
+
+  volumeMounts:
+    - name: nextcloud-mariadb-persistent-volume
+      mountPath: /var/lib/mysql
+    - name: nextcloud-mariadb-config-persistent-volume
+      mountPath: /etc/mysql
+  #Volumes End
+
   serviceAccount:
     # Specifies whether a service account should be created
     create: true
