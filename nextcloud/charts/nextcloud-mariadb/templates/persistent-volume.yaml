@@ -15,7 +15,7 @@ spec:
 
   claimRef:
     namespace: default
-    name: mariadb-pvc
+    name: nextcloud-mariadb-pvc
 
   hostPath:
     path: "/var/lib/mysql"

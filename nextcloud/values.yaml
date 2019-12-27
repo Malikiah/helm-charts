@@ -84,17 +84,22 @@ nextcloud:
   affinity: {}
 
 nextcloud-nginx:
-  replicaCount: 1
-  name: nextcloud-nginx
-  image:
-    repository: malikiah1/nginx
-    tag: fedora
-    pullPolicy: Always
+  containers:
+  - replicaCount: 1
+    name: nextcloud-nginx
+    image:
+      repository: malikiah1/nginx
+      tag: fedora
+      pullPolicy: Always
 
-  containerPort: 80
-## Side Car PHP-FPM
-  phpfpm:
-    replicaCount: 1
+    volumeMounts:
+      - name: nextcloud-nginx-config
+        mountPath: /etc/nginx/conf.d
+      - name: nextcloud-persistent-volume
+        mountPath: /usr/share/nginx/html/cloud.malikiah.io
+
+    containerPort: 80
+  - replicaCount: 1
     name: nextcloud-php-fpm
     image:
       repository: malikiah1/php-fpm
@@ -109,13 +114,8 @@ nextcloud-nginx:
         mountPath: /etc/php-fpm.d
       - name: nextcloud-persistent-volume
         mountPath: /usr/share/nginx/html/cloud.malikiah.io
-    #Volumes End
 
-  imagePullSecrets: []
-  nameOverride: ""
-  fullnameOverride: "nextcloud-nginx"
-
-  #Volumes Start
+#Volumes Start
   volumes:
     - name: nextcloud-php-fpm-config
       configMap: nextcloud-php-fpm-configmap
@@ -123,13 +123,7 @@ nextcloud-nginx:
       configMap: nextcloud-nginx-configmap
     - name: nextcloud-persistent-volume
       claimName: nextcloud-pvc
-
-  volumeMounts:
-    - name: nextcloud-nginx-config
-      mountPath: /etc/nginx/conf.d
-    - name: nextcloud-persistent-volume
-      mountPath: /usr/share/nginx/html/cloud.malikiah.io
-  #Volumes End
+ #Volumes End
 
   serviceAccount:
     # Specifies whether a service account should be created

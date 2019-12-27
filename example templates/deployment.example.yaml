@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "nextcloud-nginx.fullname" . }}
+  name: {{ include "EXAMPLE.fullname" . }}
   labels:
-{{ include "nextcloud-nginx.labels" . | indent 4 }}
+{{ include "EXAMPLE.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "nextcloud-nginx.name" . }}
+      app.kubernetes.io/name: {{ include "EXAMPLE.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "nextcloud-nginx.name" . }}
+        app.kubernetes.io/name: {{ include "EXAMPLE.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ template "nextcloud-nginx.serviceAccountName" . }}
+      serviceAccountName: {{ template "EXAMPLE.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
 

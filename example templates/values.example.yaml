@@ -1,0 +1,104 @@
+nginx-php-fpm:
+  containers:
+  - replicaCount: 1
+    name: nginx
+    image:
+      repository: nginx
+      tag: latest
+      pullPolicy: Always
+
+    volumeMounts:
+    - name: nginx-config
+      mountPath: /etc/nginx/conf.d
+    - name: nginx-persistent-volume
+      mountPath: /usr/share/nginx/html/example.com
+
+    containerPort: 80
+  - replicaCount: 1
+    name: php-fpm
+    image:
+      repository: malikiah1/php-fpm
+      tag: fedora
+      pullPolicy: Always
+
+    containerPort: 9000
+
+    volumeMounts:
+      - name: php-fpm-config
+        #mountPath: /usr/local/etc/php-fpm.d
+        mountPath: /etc/php-fpm.d
+      - name: nginx-persistent-volume
+        mountPath: /usr/share/nginx/html/example.com
+    
+
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: "nginx-php-fpm"
+
+#Volumes Start
+  volumes:
+    - name: php-fpm-config
+      configMap: php-fpm-configmap
+    - name: nginx-config
+      configMap: nginx-configmap
+    - name: nginx-persistent-volume
+      claimName: nginx-pvc
+
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name:
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+  service:
+    name: nginx
+    type: ClusterIP
+    port: 80
+    
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+
+    hosts:
+      - host: example.com
+        paths: [/]
+          
+          
+        
+
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
